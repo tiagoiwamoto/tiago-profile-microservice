@@ -1,4 +1,4 @@
-package br.com.tiagoiwamoto.profilems;
+package br.com.tiagoiwamoto.tiagoprofilemicroservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
