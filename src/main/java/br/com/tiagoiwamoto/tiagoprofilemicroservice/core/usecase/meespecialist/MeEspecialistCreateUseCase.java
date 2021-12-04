@@ -10,7 +10,7 @@ package br.com.tiagoiwamoto.tiagoprofilemicroservice.core.usecase.meespecialist;
 
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.config.rest.ResponseDto;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.dataprovider.repository.MeRepository;
-import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.domain.Especialist;
+import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.domain.Specialist;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.domain.Me;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.entrypoint.rest.dto.ApiResponseDto;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.util.AppMessage;
@@ -34,20 +34,20 @@ public class MeEspecialistCreateUseCase {
 
     private final MeRepository meRepository;
 
-    public ResponseDto addEspecialistToMe(Especialist especialist, String uuid){
+    public ResponseDto addEspecialistToMe(Specialist specialist, String uuid){
         try{
             Optional<Me> optionalMe = this.meRepository.findById(uuid);
             if(optionalMe.isPresent()){
                 Me me = optionalMe.get();
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSSS");
-                String generatedId = UUID.nameUUIDFromBytes(especialist.getName().concat(dtf.format(LocalDateTime.now()))
+                String generatedId = UUID.nameUUIDFromBytes(specialist.getName().concat(dtf.format(LocalDateTime.now()))
                         .getBytes(StandardCharsets.UTF_8)).toString();
-                especialist.setId(generatedId);
-                List<Especialist> especialists = me.getEspecialists() == null ? new ArrayList<>() : me.getEspecialists();
-                especialists.add(especialist);
-                me.setEspecialists(especialists);
+                specialist.setId(generatedId);
+                List<Specialist> specialists = me.getSpecialists() == null ? new ArrayList<>() : me.getSpecialists();
+                specialists.add(specialist);
+                me.setSpecialists(specialists);
                 me = this.meRepository.save(me);
-                return ApiResponseDto.of(HttpStatus.CREATED.name(), me.getEspecialists(), AppMessage.API_SUCCESS);
+                return ApiResponseDto.of(HttpStatus.CREATED.name(), me.getSpecialists(), AppMessage.API_SUCCESS);
             }else {
                 //TODO: lancar exception que nao existe o Me
                 throw new RuntimeException();

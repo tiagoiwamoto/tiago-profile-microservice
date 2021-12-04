@@ -9,7 +9,7 @@ package br.com.tiagoiwamoto.tiagoprofilemicroservice.core.usecase.meespecialist;
  */
 
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.config.rest.ResponseDto;
-import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.domain.Especialist;
+import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.domain.Specialist;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.domain.Me;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.usecase.me.MeCreateUpdateUseCase;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.usecase.me.MeRecoveryUseCase;
@@ -32,11 +32,11 @@ public class MeEspecialistDeleteUseCase {
 
     public ResponseDto prepareToRemoveMeEspecialist(String uuid, String especialistId){
         Me me = this.meRecoveryUseCase.validIfRecordExists(uuid);
-        Optional<Especialist> optionalEspecialist =
-                me.getEspecialists().stream().filter(line -> line.getId().equalsIgnoreCase(especialistId)).findFirst();
+        Optional<Specialist> optionalEspecialist =
+                me.getSpecialists().stream().filter(line -> line.getId().equalsIgnoreCase(especialistId)).findFirst();
         if(optionalEspecialist.isPresent()){
-            Especialist especialist = optionalEspecialist.get();
-            me.getEspecialists().remove(especialist);
+            Specialist specialist = optionalEspecialist.get();
+            me.getSpecialists().remove(specialist);
             this.meCreateUpdateUseCase.prepareToCreateOrUpdateMe(me);
         }else {
             //TODO: lancar exception customizada

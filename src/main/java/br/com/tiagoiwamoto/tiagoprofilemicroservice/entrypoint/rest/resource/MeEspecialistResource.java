@@ -9,7 +9,7 @@ package br.com.tiagoiwamoto.tiagoprofilemicroservice.entrypoint.rest.resource;
  */
 
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.config.rest.ResponseDto;
-import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.domain.Especialist;
+import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.domain.Specialist;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.usecase.meespecialist.MeEspecialistCreateUseCase;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.usecase.meespecialist.MeEspecialistDeleteUseCase;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.usecase.meespecialist.MeEspecialistUpdateUseCase;
@@ -49,11 +49,11 @@ public class MeEspecialistResource {
     })
     @PostMapping(path = "/{uuid}/especialists")
     public ResponseEntity<ResponseDto> addEspecialist(
-            @RequestBody @Valid Especialist especialist,
+            @RequestBody @Valid Specialist specialist,
             @PathVariable(name = "uuid") String uuid){
-        log.info("starting addEspecialist() of new Especialist... {}", especialist.toString());
+        log.info("starting addEspecialist() of new Especialist... {}", specialist.toString());
         return new ResponseEntity<>(
-                this.meEspecialistCreateUseCase.addEspecialistToMe(especialist, uuid),
+                this.meEspecialistCreateUseCase.addEspecialistToMe(specialist, uuid),
                 HttpStatus.CREATED);
     }
 
@@ -64,11 +64,11 @@ public class MeEspecialistResource {
     })
     @PutMapping(path = "/{uuid}/especialists")
     public ResponseEntity<ResponseDto> updateEspecialist(
-            @RequestBody @Valid Especialist especialist,
+            @RequestBody @Valid Specialist specialist,
             @PathVariable(name = "uuid") String uuid){
-        log.info("starting updateEspecialist() of Especialist... {}", especialist.toString());
+        log.info("starting updateEspecialist() of Especialist... {}", specialist.toString());
         return new ResponseEntity<>(
-                this.meEspecialistUpdateUseCase.updateEspecialistToMe(especialist, uuid),
+                this.meEspecialistUpdateUseCase.updateEspecialistToMe(specialist, uuid),
                 HttpStatus.OK);
     }
 

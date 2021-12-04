@@ -38,7 +38,7 @@ public class Me {
     @NotBlank
     private String linkedinUrl;
     private List<Education> educations;
-    private List<Especialist> especialists;
+    private List<Specialist> specialists;
     private List<Resume> resumes;
     private List<Work> works;
     private List<Certificate> certificates;

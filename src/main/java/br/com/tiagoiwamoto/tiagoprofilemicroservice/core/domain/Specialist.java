@@ -12,7 +12,7 @@ import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.domain.enums.TecnologyT
 import lombok.Data;
 
 @Data
-public class Especialist {
+public class Specialist {
 
     private String id;
     private String name;

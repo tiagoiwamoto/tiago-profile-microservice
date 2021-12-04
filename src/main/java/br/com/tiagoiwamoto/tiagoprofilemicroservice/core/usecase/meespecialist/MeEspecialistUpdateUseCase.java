@@ -10,7 +10,7 @@ package br.com.tiagoiwamoto.tiagoprofilemicroservice.core.usecase.meespecialist;
 
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.config.rest.ResponseDto;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.dataprovider.repository.MeRepository;
-import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.domain.Especialist;
+import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.domain.Specialist;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.domain.Me;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.entrypoint.rest.dto.ApiResponseDto;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.util.AppMessage;
@@ -29,21 +29,21 @@ public class MeEspecialistUpdateUseCase {
 
     private final MeRepository meRepository;
 
-    public ResponseDto updateEspecialistToMe(Especialist especialist, String uuid){
+    public ResponseDto updateEspecialistToMe(Specialist specialist, String uuid){
         try{
             Optional<Me> optionalMe = this.meRepository.findById(uuid);
             if(optionalMe.isPresent()){
                 Me me = optionalMe.get();
-                List<Especialist> especialists = me.getEspecialists();
-                Optional<Especialist> optionalEspecialist =
-                        especialists.stream().filter(line -> line.getId().equalsIgnoreCase(especialist.getId())).findFirst();
+                List<Specialist> specialists = me.getSpecialists();
+                Optional<Specialist> optionalEspecialist =
+                        specialists.stream().filter(line -> line.getId().equalsIgnoreCase(specialist.getId())).findFirst();
                 if(optionalEspecialist.isPresent()){
-                    Especialist especialistToUpdate = optionalEspecialist.get();
-                    especialists.remove(especialistToUpdate);
-                    especialists.add(especialist);
-                    me.setEspecialists(especialists);
+                    Specialist specialistToUpdate = optionalEspecialist.get();
+                    specialists.remove(specialistToUpdate);
+                    specialists.add(specialist);
+                    me.setSpecialists(specialists);
                     me = this.meRepository.save(me);
-                    return ApiResponseDto.of(HttpStatus.OK.name(), me.getEspecialists(), AppMessage.API_SUCCESS);
+                    return ApiResponseDto.of(HttpStatus.OK.name(), me.getSpecialists(), AppMessage.API_SUCCESS);
                 }else {
                     //TODO: lancar excetpion que nao localizou o education para atualizar
                     throw new RuntimeException();

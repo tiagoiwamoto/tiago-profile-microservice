@@ -43,7 +43,7 @@ public class MeResumeUpdateUseCase {
                     resumeList.add(resume);
                     me.setResumes(resumeList);
                     me = this.meRepository.save(me);
-                    return ApiResponseDto.of(HttpStatus.OK.name(), me.getEspecialists(), AppMessage.API_SUCCESS);
+                    return ApiResponseDto.of(HttpStatus.OK.name(), me.getSpecialists(), AppMessage.API_SUCCESS);
                 }else {
                     //TODO: lancar excetpion que nao localizou o education para atualizar
                     throw new RuntimeException();
