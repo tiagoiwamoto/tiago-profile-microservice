@@ -43,14 +43,12 @@ public class UserDto {
     private String city;
     private String state;
     private Map<String, Object> preference;
-    private Integer preferenceId;
     private LocalDateTime createdAt;
     private LocalDateTime removedAt;
 
     public static UserDto buildUserDtoFromUser(User user){
         UserDto userDto = build();
         BeanUtils.copyProperties(user, userDto);
-        userDto.setPreferenceId(user.getUserPrefenceId());
         return userDto;
     }
 

@@ -28,7 +28,6 @@ public class User {
     private String neighborhood;
     private String city;
     private String state;
-    private Integer userPrefenceId;
     private LocalDateTime createdAt;
     private LocalDateTime removedAt;
 
