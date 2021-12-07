@@ -1,4 +1,4 @@
-package br.com.tiagoiwamoto.tiagoprofilemicroservice.entrypoint.rest.assembler;
+package br.com.tiagoiwamoto.tiagoprofilemicroservice.config.rest.assembler;
 
 /*
  * Tiago Henrique Iwamoto

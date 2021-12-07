@@ -12,7 +12,7 @@ import br.com.tiagoiwamoto.tiagoprofilemicroservice.config.rest.ResponseDto;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.dataprovider.repository.UserRepository;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.domain.User;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.core.error.UserNotfoundException;
-import br.com.tiagoiwamoto.tiagoprofilemicroservice.entrypoint.rest.assembler.UserAssembler;
+import br.com.tiagoiwamoto.tiagoprofilemicroservice.config.rest.assembler.UserAssembler;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.entrypoint.rest.dto.ApiResponseDto;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.entrypoint.rest.dto.UserDto;
 import br.com.tiagoiwamoto.tiagoprofilemicroservice.util.AppMessage;
@@ -26,7 +26,6 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
